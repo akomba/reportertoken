@@ -455,8 +455,8 @@ contract ReporterTokenSale is Ownable {
 
     // assign the rest of the 100M tokens to the reserve
     uint unassigned;
-    if(maxTokens > tokenRaised) {
-      unassigned  = maxTokens.sub(tokenRaised);
+    if(tokensForSale > tokenRaised) {
+      unassigned  = tokensForSale.sub(tokenRaised);
       token.mint(multiSig,unassigned);
     }
     token.finishMinting();
