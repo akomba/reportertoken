@@ -366,6 +366,10 @@ contract ReporterTokenSale is Ownable {
     require((msg.sender == owner) || (msg.sender==cs));
     _;
   }
+   modifier onlyCS() {
+    require(msg.sender == cs);
+    _;
+  }
 
   /**
   * @dev throws if person sending is not authorised or sends nothing
@@ -400,13 +404,26 @@ contract ReporterTokenSale is Ownable {
   */
   function blockAccount(address whom) onlyCSorOwner public {
     authorised[whom] = false;
-  
-
+   }  
+    
   /**
   * @dev set a new CS representative
-   */
+  */
   function setCS(address newCS) onlyOwner public {
     cs = newCS;
+  }
+
+  function placeTokens(address beneficiary, uint256 _tokens) onlyCS public {
+    //check minimum and maximum amount
+    require(_tokens != 0);
+    require(!hasEnded());
+    uint256 amount = 0;
+    if (token.balanceOf(beneficiary) == 0) {
+      numberOfPurchasers++;
+    }
+    tokenRaised = tokenRaised.add(_tokens); // so we can go slightly over
+    token.mint(beneficiary, _tokens);
+    TokenPurchase(beneficiary, amount, _tokens);
   }
 
   // low level token purchase function
