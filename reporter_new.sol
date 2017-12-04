@@ -321,6 +321,7 @@ contract ReporterTokenSale is Ownable {
   function ReporterTokenSale() public {
     startTimestamp = 1508684400; // 22 Oct. 15:00 UTC
     endTimestamp = 1519657200;   // 26 Febr. 15:00 UTC
+    multiSig = 0xD00d085F125EAFEA9e8c5D3f4bc25e6D0c93Af0e;
 
     token = new ReporterToken();
     decimals = token.decimals();
@@ -399,7 +400,7 @@ contract ReporterTokenSale is Ownable {
   */
   function blockAccount(address whom) onlyCSorOwner public {
     authorised[whom] = false;
-  }
+  
 
   /**
   * @dev set a new CS representative
