@@ -301,7 +301,7 @@ contract ReporterTokenSale is Ownable {
   uint256 public maxTokens;
 
   // maximum amount of tokens for sale
-  uint256 public tokensForSale;  // 24 Million Tokens for SALE
+  uint256 public tokensForSale;  // 36 Million Tokens for SALE
 
   // number of participants in presale
   uint256 public numberOfPurchasers = 0;
@@ -310,7 +310,7 @@ contract ReporterTokenSale is Ownable {
   address public cs;
 
 
-  // switch on/off the authorisation , default: true - on
+  // switch on/off the authorisation , default: false
   bool    public freeForAll = false;
 
   mapping (address => bool) public authorised; // just to annoy the heck out of americans
@@ -319,8 +319,8 @@ contract ReporterTokenSale is Ownable {
   event SaleClosed();
 
   function ReporterTokenSale() public {
-    startTimestamp = 1508684400; // 22 Oct. 15:00 UTC
-    endTimestamp = 1519657200;   // 26 Febr. 15:00 UTC
+    startTimestamp = 1508684400; // 22 Oct. 2017. 15:00 UTC
+    endTimestamp = 1519657200;   // 26 Febr. 2018. 15:00 UTC
     multiSig = 0xD00d085F125EAFEA9e8c5D3f4bc25e6D0c93Af0e;
 
     token = new ReporterToken();
@@ -453,7 +453,7 @@ contract ReporterTokenSale is Ownable {
   function finishSale() public onlyOwner {
     require(hasEnded());
 
-    // assign the rest of the 100M tokens to the reserve
+    // assign the rest of the 60M tokens to the reserve
     uint unassigned;
     if(maxTokens > tokenRaised) {
       unassigned  = maxTokens.sub(tokenRaised);
