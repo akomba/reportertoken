@@ -319,9 +319,9 @@ contract ReporterTokenSale is Ownable {
   event SaleClosed();
 
   function ReporterTokenSale() public {
-    startTimestamp = 1508684400; // 22 Oct. 15:00 UTC
-    endTimestamp = 1519657200;   // 26 Febr. 15:00 UTC
-    multiSig = 0xD00d085F125EAFEA9e8c5D3f4bc25e6D0c93Af0e;
+    startTimestamp = 1508684400; // 22 Oct. 2017. 15:00 UTC
+    endTimestamp = 1519657200;   // 26 Febr. 2018. 15:00 UTC
+    multiSig = 0x2B3AB3EA77f726a6E58e485595d9b27A5eB32C00; // test multisig2
 
     token = new ReporterToken();
     decimals = token.decimals();
@@ -455,8 +455,8 @@ contract ReporterTokenSale is Ownable {
 
     // assign the rest of the 100M tokens to the reserve
     uint unassigned;
-    if(maxTokens > tokenRaised) {
-      unassigned  = maxTokens.sub(tokenRaised);
+    if(tokensForSale > tokenRaised) {
+      unassigned  = tokensForSale.sub(tokenRaised);
       token.mint(multiSig,unassigned);
     }
     token.finishMinting();
