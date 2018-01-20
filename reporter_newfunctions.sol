@@ -1,4 +1,4 @@
-pragma solidity ^0.4.12;
+pragma solidity ^0.4.17;
 
 /**
  * @title Ownable
@@ -463,10 +463,10 @@ contract ReporterTokenSale is Ownable, Pausable{
   }
 
    /**
-  * @dev set a new CS representative
+  * @dev set a newRate if have a big different in ether/dollar rate 
   */
   function setRate(uint newRate) onlyCSorOwner public {
-    require( 0 < newRate && newRate < 3000); 
+    require( 0 < newRate && newRate < 8000); 
     r = newRate;
   }
 
